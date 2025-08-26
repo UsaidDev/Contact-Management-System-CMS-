@@ -9,6 +9,7 @@ struct Contact
     char email[25];
 };
  void Displaymenu(){
+    int choise=0;
     printf("--Contact Management System---\n");
     printf("1:Add new contact\n");
     printf("2:View all contact\n");
@@ -17,8 +18,9 @@ struct Contact
     printf("5:Delete a contact\n");
     printf("6:Exit the program\n");
 
-    printf("Choose the number:");
+    printf("\nChoose the number:");
     
+    scanf("%d", &choise);
 
  }
 
@@ -37,6 +39,7 @@ int main(){
     printf("Name:-%s\n", Contact1.name);
     printf("Phone:-%s\n", Contact1.phone);
     printf("Email:-%s\n", Contact1.email);
+    Displaymenu();
 
 
     return 0;
