@@ -9,7 +9,7 @@ struct Contact
     char email[25];
 };
 
-// Global variables
+// GLOBAL VARIABLES
 struct Contact Contacts[100];
 int Contactcount = 0;
 char searchname[50];
@@ -22,7 +22,7 @@ void ClearInputBuffer()
     }
 }
 
-// Add contacts function
+// ADDCONTACTS FUNCTION
 void Addnewcontact()
 {
     printf("Name: ");
@@ -40,7 +40,7 @@ void Addnewcontact()
     Contactcount++;
 }
 
-// View contact function
+// VIEWSCONTACTS FUNCTION
 void Viewcontact()
 {
     if (Contactcount == 0)
@@ -58,7 +58,7 @@ void Viewcontact()
         printf("-----------------\n");
     }
 }
-
+// SEARCH FUCNTION
 void Searchcontact()
 {
     printf("Search the person name: \n");
@@ -95,7 +95,7 @@ void Displaymenu()
         printf("1:Add new contact\n");
         printf("2:View all contact\n");
         printf("3:Search for a contact\n");
-        printf("4:Modify a contact\n");
+        printf("4:Update a contact\n");
         printf("5:Delete a contact\n");
         printf("6:Exit the program\n");
 
@@ -112,6 +112,9 @@ void Displaymenu()
         case 3:
             Searchcontact();
             break;
+        case 6:
+            printf("Thank you!\n");
+            return;
         default:
             printf("Invalid choise\n");
         }
@@ -123,3 +126,17 @@ int main()
     Displaymenu();
     return 0;
 }
+
+// while (1)
+// {
+
+//     switch (choise)
+//     {
+//     case 1:
+//         /* code */
+//         break;
+
+//     default:
+//         break;
+//     }
+// }
