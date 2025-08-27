@@ -12,6 +12,7 @@ struct Contact
 // Global variables
 struct Contact Contacts[100];
 int Contactcount = 0;
+char searchname[50];
 
 void ClearInputBuffer()
 {
@@ -20,6 +21,7 @@ void ClearInputBuffer()
     {
     }
 }
+
 // Add contacts function
 void Addnewcontact()
 {
@@ -34,7 +36,7 @@ void Addnewcontact()
     printf("Email: ");
     scanf("%24s", Contacts[Contactcount].email);
 
-    printf("Contact added!");
+    printf("Contact added!\n");
     Contactcount++;
 }
 
@@ -54,6 +56,33 @@ void Viewcontact()
         printf("Phone: %s\n", Contacts[i].phone);
         printf("Email: %s\n", Contacts[i].email);
         printf("-----------------\n");
+    }
+}
+
+void Searchcontact()
+{
+    printf("Search the person name: \n");
+    scanf("%49s", searchname);
+
+    int found = 0;
+
+    for (int i = 0; i < Contactcount; i++)
+    {
+        if (strcmp(Contacts[i].name, searchname) == 0)
+        {
+            printf("Search result found!\n");
+            printf("Contact #%d\n", i);
+            printf("Name: %s\n", Contacts[i].name);
+            printf("Phone: %s\n", Contacts[i].phone);
+            printf("Email: %s\n", Contacts[i].email);
+            found = 1;
+            printf("-----------------\n");
+            break;
+        }
+    }
+    if (!found)
+    {
+        printf("Contact not found.\n");
     }
 }
 
@@ -79,6 +108,9 @@ void Displaymenu()
             break;
         case 2:
             Viewcontact();
+            break;
+        case 3:
+            Searchcontact();
             break;
         default:
             printf("Invalid choise\n");
