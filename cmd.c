@@ -71,7 +71,7 @@ void Searchcontact()
         if (strcmp(Contacts[i].name, searchname) == 0)
         {
             printf("Search result found!\n");
-            printf("Contact #%d\n", i);
+            printf("Contact #%d\n", i + 1);
             printf("Name: %s\n", Contacts[i].name);
             printf("Phone: %s\n", Contacts[i].phone);
             printf("Email: %s\n", Contacts[i].email);
@@ -98,6 +98,7 @@ void Updatecontact()
     {
         if (strcmp(Contacts[i].name, update) == 0)
         {
+            found = 1;
             printf("1:Name\n");
             printf("2:Phone\n");
             printf("3:Email:\n");
@@ -111,17 +112,17 @@ void Updatecontact()
                 printf("Enter new name: \n");
                 fgets(Contacts[i].name, sizeof(Contacts[i].name), stdin);
                 Contacts[i].name[strcspn(Contacts[i].name, "\n")] = '\0';
-                printf("Name updated Successful");
+                printf("Name updated Successful\n");
                 break;
             case 2:
-                printf("Enter new phone:");
+                printf("Enter new phone:\n");
                 scanf("%14s", Contacts[i].phone);
-                printf("Phone updated Successful");
+                printf("Phone updated Successful\n");
                 break;
             case 3:
-                printf("Enter new email:");
+                printf("Enter new email: ");
                 scanf("%24s", Contacts[i].email);
-                printf("Email updated Successful");
+                printf("Email updated Successfully\n");
                 break;
             default:
                 printf("Invalid selection");
@@ -129,11 +130,40 @@ void Updatecontact()
             }
             break;
         }
-        if (!found){
-            printf("Contact not found. \n");
-        }
+    }
+    if (!found)
+    {
+        printf("Contact not found. \n");
     }
 }
+
+void Deletecontact()
+{
+    char delete[50];
+    int found = 0;
+    printf("Enter the contact name you want to delete:\n");
+    scanf("%49s", delete);
+    for (int i = 0; i < Contactcount; i++)
+    {
+        if (strcmp(Contacts[i].name, delete) == 0)
+        {
+            // memset(&Contacts[i], 0,sizeof(Contacts[i]));
+            for (int j = i; j < Contactcount - 1; j++)
+            {
+                Contacts[j] = Contacts[j + 1];
+            }
+            Contactcount--;
+            found = 1;
+            printf("Contact deleted Successfully\n");
+            break;
+        }
+    }
+    if (!found)
+    {
+        printf("Contact not found.\n");
+    }
+}
+
 // DISPLAYMENUE FUNCTION
 void Displaymenu()
 {
@@ -163,6 +193,9 @@ void Displaymenu()
             break;
         case 4:
             Updatecontact();
+            break;
+        case 5:
+            Deletecontact();
             break;
         case 6:
             printf("Thank you!\n");
