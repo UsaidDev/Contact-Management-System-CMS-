@@ -86,6 +86,55 @@ void Searchcontact()
     }
 }
 
+// UPDATE FUNCTION
+void Updatecontact()
+{
+    int choise;
+    char update[50];
+    int found = 0;
+    printf("Enter the contact name you want to update:\n");
+    scanf("%49s", update);
+    for (int i = 0; i < Contactcount; i++)
+    {
+        if (strcmp(Contacts[i].name, update) == 0)
+        {
+            printf("1:Name\n");
+            printf("2:Phone\n");
+            printf("3:Email:\n");
+            printf("Enter your choise(1,2):\n");
+            scanf("%d", &choise);
+            ClearInputBuffer();
+
+            switch (choise)
+            {
+            case 1:
+                printf("Enter new name: \n");
+                fgets(Contacts[i].name, sizeof(Contacts[i].name), stdin);
+                Contacts[i].name[strcspn(Contacts[i].name, "\n")] = '\0';
+                printf("Name updated Successful");
+                break;
+            case 2:
+                printf("Enter new phone:");
+                scanf("%14s", Contacts[i].phone);
+                printf("Phone updated Successful");
+                break;
+            case 3:
+                printf("Enter new email:");
+                scanf("%24s", Contacts[i].email);
+                printf("Email updated Successful");
+                break;
+            default:
+                printf("Invalid selection");
+                break;
+            }
+            break;
+        }
+        if (!found){
+            printf("Contact not found. \n");
+        }
+    }
+}
+// DISPLAYMENUE FUNCTION
 void Displaymenu()
 {
     int choise;
@@ -112,6 +161,9 @@ void Displaymenu()
         case 3:
             Searchcontact();
             break;
+        case 4:
+            Updatecontact();
+            break;
         case 6:
             printf("Thank you!\n");
             return;
@@ -126,17 +178,3 @@ int main()
     Displaymenu();
     return 0;
 }
-
-// while (1)
-// {
-
-//     switch (choise)
-//     {
-//     case 1:
-//         /* code */
-//         break;
-
-//     default:
-//         break;
-//     }
-// }
