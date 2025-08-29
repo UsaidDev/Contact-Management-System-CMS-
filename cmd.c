@@ -58,12 +58,15 @@ void Viewcontact()
         printf("-----------------\n");
     }
 }
+
 // SEARCH FUCNTION
 void Searchcontact()
 {
     printf("Search the person name: \n");
-    scanf("%49s", searchname);
-
+    ClearInputBuffer();
+    fgets(searchname, sizeof(searchname), stdin);
+    searchname[strcspn(searchname, "\n")] = '\0';
+    
     int found = 0;
 
     for (int i = 0; i < Contactcount; i++)
@@ -93,7 +96,9 @@ void Updatecontact()
     char update[50];
     int found = 0;
     printf("Enter the contact name you want to update:\n");
-    scanf("%49s", update);
+    ClearInputBuffer();
+    fgets(update, sizeof(update), stdin);
+    update[strcspn(update, "\n")] = '\0';
     for (int i = 0; i < Contactcount; i++)
     {
         if (strcmp(Contacts[i].name, update) == 0)
@@ -142,12 +147,14 @@ void Deletecontact()
     char delete[50];
     int found = 0;
     printf("Enter the contact name you want to delete:\n");
-    scanf("%49s", delete);
+    ClearInputBuffer();
+    fgets(delete, sizeof(delete), stdin);
+    delete[strcspn(delete, "\n")] = '\0';
+
     for (int i = 0; i < Contactcount; i++)
     {
         if (strcmp(Contacts[i].name, delete) == 0)
         {
-            // memset(&Contacts[i], 0,sizeof(Contacts[i]));
             for (int j = i; j < Contactcount - 1; j++)
             {
                 Contacts[j] = Contacts[j + 1];
