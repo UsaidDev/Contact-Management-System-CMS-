@@ -68,7 +68,6 @@ void Searchcontact()
     searchname[strcspn(searchname, "\n")] = '\0';
     
     int found = 0;
-
     for (int i = 0; i < Contactcount; i++)
     {
         if (strcmp(Contacts[i].name, searchname) == 0)
